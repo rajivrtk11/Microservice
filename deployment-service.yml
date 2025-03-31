@@ -185,22 +185,22 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: frontend
+  name: frontend_html
 spec:
   selector:
     matchLabels:
-      app: frontend
+      app: frontend_html
   template:
     metadata:
       labels:
-        app: frontend
+        app: frontend_html
       annotations:
         sidecar.istio.io/rewriteAppHTTPProbers: "true"
     spec:
       serviceAccountName: default
       containers:
         - name: server
-          image: rajivrtk01/frontend:latest
+          image: rajivrtk01/frontend_html:latest
           ports:
           - containerPort: 8080
           readinessProbe:
@@ -257,11 +257,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: frontend
+  name: frontend_html
 spec:
   type: NodePort
   selector:
-    app: frontend
+    app: frontend_html
   ports:
   - name: http
     port: 80
@@ -274,7 +274,7 @@ metadata:
 spec:
   type: LoadBalancer
   selector:
-    app: frontend
+    app: frontend_html
   ports:
   - name: http
     port: 80
