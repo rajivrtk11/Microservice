@@ -6,7 +6,7 @@ pipeline {
             steps {
                 script {
                     withDockerRegistry(credentialsId: 'docker-cred', toolName: 'docker') {
-                        sh "docker build -t rajivrtk01/frontend:latest ."
+                        sh "docker build --no-cache -t rajivrtk01/frontend:latest ."
                     }
                 }
             }
